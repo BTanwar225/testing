@@ -1,137 +1,31 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Report</title>
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Denk+One&display=swap" rel="stylesheet">
-	
-	<!--***************************************** jquery libs start from here  *************************************************-->
-
-
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
-        $("#btnPrint").live("click", function () {
-            var divContents = $("#dvContainer").html();
-            var printWindow = window.open('', '', 'height=400,width=800');
-            printWindow.document.write('<html><head><title>NOF Junior Report 2020</title>');
-            printWindow.document.write('</head><body >');
-            printWindow.document.write(divContents);
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            printWindow.print();
+       $(document).ready(function($) {
+          var ua = navigator.userAgent.toLowerCase();
+          var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+
+          $('button.print').click(function(e) {
+            e.preventDefault();
+            if (isAndroid) {
+              // https://developers.google.com/cloud-print/docs/gadget
+              var gadget = new cloudprint.Gadget();
+              gadget.setPrintDocument("url", $('title').html(), window.location.href, "utf-8");
+              gadget.openPrintDialog();
+            } else {
+              window.print();
+            }
+            return false;
+          });
         });
-
-        // for mobile trial
-
-        $(document).ready(function($) {
-		  var ua = navigator.userAgent.toLowerCase();
-		  var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-
-		  $('button.print').click(function(e) {
-		    e.preventDefault();
-		    if (isAndroid) {
-		      // https://developers.google.com/cloud-print/docs/gadget
-		      var gadget = new cloudprint.Gadget();
-		      gadget.setPrintDocument("url", $('title').html(), window.location.href, "utf-8");
-		      gadget.openPrintDialog();
-		    } else {
-		      window.print();
-		    }
-		    return false;
-		  });
-		});
-        
     </script>
-
-    <!--***************************************** jquery libs end from here  *************************************************-->
-
 </head>
-<body style="background-color: white; margin: 0; font-family: denk one;">
-
-<!--********************************************* button ***************************************************************-->
-
-<input type="button" value="Download Now" id="btnPrint" />
-
-<!--********************************************* button ***************************************************************-->
-
-
-<!--***************************************** main contain start here ***********************************************************-->
-
- <div id="dvContainer">
-
- 	
- 	<div style="width: 793px; height: 1122px; background-size: cover; margin: 0 auto 50px; position: relative;">
- 		<img src="https://dl3.pushbulletusercontent.com/guHbJmBG6c6wJO3V9JgD48jcZhGg8676/bg.png" style="position: absolute;">
- 		<div style="float: left; width: 300px; height: 200px; position: absolute; z-index: 1;">
- 			<p style="margin: 10px 0 0 5px; font-family: denk one; font-size: 20px; color: black; ">STUDENT<br>PERFORMANCE REPORT</p> 		
- 		</div>
- 		<img src="https://dl3.pushbulletusercontent.com/h7k2pEQjtH4a2cI2o7dK4qt5cLK858yP/junior-logo.png" style="position: absolute; width: 200px; right: 5px;" >
- 		
- 		<div style="position: absolute; margin-top: 400px; width: 800px;">
-
-
- 		<h3 style="color: #00959C; position: absolute; margin: 200px auto 0; font-size: 60px; font-family: denk one; text-align: center; width: 100%; ">
-
- 			<!----------- Student name  --------->
-
- 				{{sdfsjkfhkhalfhVansfsdi}}
-
- 			<!----------- Student name ends  --------->
- 			
- 		</h3>
-
-
- 		<p style="color: #00959C; position: absolute; margin: 300px 10% 0; font-size: 30px; text-align: center; font-family: denk one;">has performed
-
- 		<!----------- percentage  --------->	
-
- 		{{$%}}
-
- 		<!----------- percentage  --------->
-
- 		better than the total number of students appeared.</p>
- 		</div>
- 		<img src="https://dl3.pushbulletusercontent.com/KRz5qFTEHRIIvxPc0lfPwbKuXUfYuW6P/images-one.png" style="width: 793px; position: absolute; bottom: 0 ">
- 		
- 	</div>
-
- 	<div style="width: 793px; height: 1122px; background-size: cover; margin: 20px auto; position: relative;">
- 		<img src="https://dl3.pushbulletusercontent.com/guHbJmBG6c6wJO3V9JgD48jcZhGg8676/bg.png" style="position: absolute;">
- 		<div style="float: left; width: 300px; height: 200px; position: absolute; z-index: 1;">
- 			<p style="margin: 10px 0 0 5px; font-family: denk one; font-size: 20px; color: black; ">STUDENT<br>PERFORMANCE REPORT</p> 		
- 		</div>
- 		<img src="https://dl3.pushbulletusercontent.com/h7k2pEQjtH4a2cI2o7dK4qt5cLK858yP/junior-logo.png" style="position: absolute; width: 200px; right: 5px;" >
- 		
- 		<div style="position: absolute; margin-top: 400px; width: 800px;">
-
-
- 		<h3 style="color: #00959C; position: absolute; margin: 200px auto 0; font-size: 60px; font-family: denk one; text-align: center; width: 100%; ">
-
- 			<!----------- Student name  --------->
-
- 				{{sdfsjkfhkhalfhVansfsdi}}
-
- 			<!----------- Student name ends  --------->
- 			
- 		</h3>
-
-
- 		<p style="color: #00959C; position: absolute; margin: 300px 10% 0; font-size: 30px; text-align: center; font-family: denk one;">has performed
-
- 		<!----------- percentage  --------->	
-
- 		{{$%}}
-
- 		<!----------- percentage  --------->
-
- 		better than the total number of students appeared.</p>
- 		</div>
- 		<img src="https://dl3.pushbulletusercontent.com/KRz5qFTEHRIIvxPc0lfPwbKuXUfYuW6P/images-one.png" style="width: 793px; position: absolute; bottom: 0 ">
- 		
- 	</div>	
-
-</div>
-
-<!--***************************************** main contain end here ***********************************************************-->
+<body>
+         <p style="background-color: red; width: 500px;">This content needs to be printed.</p>
+        <button class="print">Print this page</button>
+   
+   
 </body>
 </html>
